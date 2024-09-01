@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  test_db:
+    image: postgres
+    container_name: test_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=test
+      - POSTGRES_LOG_DESTINATION=stderr
+      - POSTGRES_LOGGING_COLLECTOR=on
+      - POSTGRES_LOG_DIRECTORY=/var/log/postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - '5433:5432'
+    volumes:
+      - .db/:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+
